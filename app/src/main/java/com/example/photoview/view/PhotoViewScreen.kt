@@ -1,20 +1,17 @@
 package com.example.photoview.view
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material3.DockedSearchBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.SearchBar
 import androidx.compose.material3.SearchBarDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -39,42 +36,34 @@ fun PhotoViewScreen(
     var expanded by rememberSaveable { mutableStateOf(false) }
 
     Surface {
-        Column {
+        Column(
+            modifier =
+            Modifier
+                .fillMaxWidth()
+                .padding(top = 32.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp),
+        ) {
 
-            Box(
+            //todo expanded????
+            DockedSearchBar(
                 modifier = Modifier
-                    .height(56.dp)
-                    .fillMaxWidth()
-            ) {
+                    .align(Alignment.CenterHorizontally)
+                    .height(56.dp),
+                inputField = {
+                    SearchBarDefaults.InputField(
+                        query = text,
+                        onQueryChange = { text = it },
+                        onSearch = { expanded = false },
+                        expanded = expanded,
+                        onExpandedChange = { expanded = it },
+                        placeholder = { Text("Search") },
+                        leadingIcon = { Icon(Icons.Default.Search, contentDescription = null) },
+                    )
+                },
+                expanded = expanded,
+                onExpandedChange = { expanded = it },
+            ) {}
 
-                SearchBar(
-                    inputField = {
-                        SearchBarDefaults.InputField(
-                            query = text,
-                            onQueryChange = { text = it },
-                            onSearch = { expanded = false },
-                            expanded = expanded,
-                            onExpandedChange = { expanded = it },
-                            placeholder = { Text("Search") },
-                            leadingIcon = { Icon(Icons.Default.Search, contentDescription = null) },
-                            trailingIcon = {
-                                Icon(
-                                    Icons.Default.MoreVert,
-                                    contentDescription = null
-                                )
-                            },
-                        )
-                    },
-                    expanded = expanded,
-                    onExpandedChange = { expanded = it },
-                    modifier = Modifier
-                        .wrapContentWidth()
-                        .padding(horizontal = 8.dp)
-                        .align(Alignment.CenterStart),
-                ) {
-
-                }
-            }
 
             //The main part of the page
             Column(
