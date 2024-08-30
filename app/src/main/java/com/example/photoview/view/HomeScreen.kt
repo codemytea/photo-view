@@ -8,7 +8,7 @@ import androidx.compose.ui.tooling.preview.Preview
 fun HomeScreen(
     onNext: () -> Unit = {}
 ) {
-    PhotoViewScreen{ loading, setLoading ->
+    PhotoViewScreen{
 
     }
 }
