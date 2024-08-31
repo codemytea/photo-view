@@ -17,6 +17,7 @@ interface FlickrAPI {
         @Query("page") page: Int,
         @Query("method") method: String = "flickr.photos.search",
         @Query("safe_search") safeSearch: Int = 1,
-        @Query("per_page") perPage : Int = 20
+        @Query("per_page") perPage : Int = 20,
+        @Query("extras") iconServer : String = "icon_server"
     ) : PhotosDTO
 }

@@ -15,16 +15,22 @@ class PhotoDTO(
     var title: String = "",
     var ispublic: Int = 0,
     var isfriend: Int = 0,
-    var isfamily: Int = 0
+    var isfamily: Int = 0,
+    var farm: String = "",
+    var iconserver: String = "",
+    var iconfarm: String = "",
 ){
-    private lateinit var thumbnailBytes: ByteArray
+    private var thumbnailBytes: ByteArray? = null
     private var originalBytes: ByteArray? = null
+    private var buddyIconBytes: ByteArray? = null
 
     suspend fun prefetchImageBytes() = withContext(Dispatchers.IO){
         thumbnailBytes = thumbnailUrl().readBytes()
+        buddyIconBytes = buddyIcon()?.readBytes()
     }
 
-    fun getThumbnail(): ByteArray = thumbnailBytes
+    fun getThumbnail(): ByteArray? = thumbnailBytes
+    fun getBuddyIcon(): ByteArray? = buddyIconBytes
 
     suspend fun getOriginal() = withContext(Dispatchers.IO){
         originalBytes ?: let{
@@ -39,5 +45,11 @@ class PhotoDTO(
     }
     private fun originalUrl(): URL{
         return URL("https://www.flickr.com/photos/$owner/$id")
+    }
+
+    private fun buddyIcon(): URL? {
+        if (iconfarm == "0" || iconserver == "0") return null
+        println("http://farm$iconfarm.staticflickr.com/$iconserver/buddyicons/$owner.jpg")
+        return URL("http://farm$iconfarm.staticflickr.com/$iconserver/buddyicons/$owner.jpg")
     }
 }
