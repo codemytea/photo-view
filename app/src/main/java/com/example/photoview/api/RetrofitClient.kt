@@ -21,13 +21,13 @@ object RetrofitClient {
                 val newRequest = it.request().newBuilder().url(newUrl).build()
                 Log.d("Retrofit", newRequest.url().toString())
                 val response = it.proceed(newRequest)
-                val newBody = response.body()?.let{
+                val newBody = response.body()?.let {
                     ResponseBody.create(
                         it.contentType(),
                         it.string().removePrefix("jsonFlickrApi(").removeSuffix(")")
                     )
                 }
-                response.newBuilder().body(newBody).build();
+                response.newBuilder().body(newBody).build()
             }
             .build()
     }

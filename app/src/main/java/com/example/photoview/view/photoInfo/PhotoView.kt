@@ -48,7 +48,7 @@ fun PhotoView(
 
         LaunchedEffect(true) {
             setLoading(true)
-            if (photo?.id != null && photo?.secret != null) {
+            if (photo?.id != null) {
                 scope.launch {
                     photoInfo = RetrofitClient.flickrApi.photoInfo(photo.id, photo.secret)
                 }

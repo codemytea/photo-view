@@ -13,38 +13,39 @@ import kotlinx.coroutines.withContext
 class FlickrPagingSource(
     val text: String,
     val userId: String = "",
-    val onError: (Throwable)->Unit
+    val onError: (Throwable) -> Unit
 ) : PagingSource<Int, PhotoDTO>() {
 
-    override fun getRefreshKey(state: PagingState<Int, PhotoDTO>): Int? {
-        return ( (state. anchorPosition ?: 0) - state.config.initialLoadSize / 2).coerceAtLeast(0)
+    override fun getRefreshKey(state: PagingState<Int, PhotoDTO>): Int {
+        return ((state.anchorPosition ?: 0) - state.config.initialLoadSize / 2).coerceAtLeast(0)
     }
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, PhotoDTO> = withContext(Dispatchers.IO){
-        try {
-            val currentPage = params.key ?: 1
-            val response = RetrofitClient.flickrApi.search(text, userId, currentPage)
-            LoadResult.Page(
-                data = response.photos.photo.also{
-                    supervisorScope {
-                        it.map{
-                            async { it.prefetchImageBytes() }
-                        }.awaitAll()
-                    }
-                },
-                prevKey = if (currentPage == 1) null else currentPage - 1,
-                nextKey = if(currentPage < response.photos.pages) currentPage + 1 else null
-            )
-        } catch (e: Throwable) {
-            e.printStackTrace()
-            if(e !is CancellationException){
-                onError(e)
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, PhotoDTO> =
+        withContext(Dispatchers.IO) {
+            try {
+                val currentPage = params.key ?: 1
+                val response = RetrofitClient.flickrApi.search(text, userId, currentPage)
+                LoadResult.Page(
+                    data = response.photos.photo.also {
+                        supervisorScope {
+                            it.map {
+                                async { it.prefetchImageBytes() }
+                            }.awaitAll()
+                        }
+                    },
+                    prevKey = if (currentPage == 1) null else currentPage - 1,
+                    nextKey = if (currentPage < response.photos.pages) currentPage + 1 else null
+                )
+            } catch (e: Throwable) {
+                e.printStackTrace()
+                if (e !is CancellationException) {
+                    onError(e)
+                }
+
+                // IOException for network failures.
+                LoadResult.Error(e)
             }
 
-            // IOException for network failures.
-            LoadResult.Error(e)
+
         }
-
-
-    }
 }

@@ -25,11 +25,11 @@ class PhotoDTO(
     var owner_name: String = "",
     var geo: String = "",
     var views: String = "",
-){
+) {
     private var thumbnailBytes: ByteArray? = null
     private var buddyIconBytes: ByteArray? = null
 
-    suspend fun prefetchImageBytes() = withContext(Dispatchers.IO){
+    suspend fun prefetchImageBytes() = withContext(Dispatchers.IO) {
         thumbnailBytes = thumbnailUrl().readBytes()
         buddyIconBytes = buddyIcon()?.readBytes()
     }
@@ -37,7 +37,7 @@ class PhotoDTO(
     fun getThumbnail(): ByteArray? = thumbnailBytes
     fun getBuddyIcon(): ByteArray? = buddyIconBytes
 
-    private fun thumbnailUrl(): URL{
+    private fun thumbnailUrl(): URL {
         return URL("https://live.staticflickr.com/$server/${id}_${secret}_z.jpg")
     }
 
