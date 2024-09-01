@@ -1,4 +1,4 @@
-package com.example.photoview.api.DTOs
+package com.example.photoview.api.DTOs.search
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 

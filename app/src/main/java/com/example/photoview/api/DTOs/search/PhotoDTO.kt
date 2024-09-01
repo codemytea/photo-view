@@ -1,9 +1,8 @@
-package com.example.photoview.api.DTOs
+package com.example.photoview.api.DTOs.search
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import kotlinx.serialization.Serializable
 import java.net.URL
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -19,9 +18,15 @@ class PhotoDTO(
     var farm: String = "",
     var iconserver: String = "",
     var iconfarm: String = "",
+    var tags: String = "",
+    var description: String = "",
+    var date_upload: String = "",
+    var date_taken: String = "",
+    var owner_name: String = "",
+    var geo: String = "",
+    var views: String = "",
 ){
     private var thumbnailBytes: ByteArray? = null
-    private var originalBytes: ByteArray? = null
     private var buddyIconBytes: ByteArray? = null
 
     suspend fun prefetchImageBytes() = withContext(Dispatchers.IO){
@@ -32,19 +37,8 @@ class PhotoDTO(
     fun getThumbnail(): ByteArray? = thumbnailBytes
     fun getBuddyIcon(): ByteArray? = buddyIconBytes
 
-    suspend fun getOriginal() = withContext(Dispatchers.IO){
-        originalBytes ?: let{
-            originalUrl().readBytes().also{
-                thumbnailBytes = it
-            }
-        }
-    }
-
     private fun thumbnailUrl(): URL{
         return URL("https://live.staticflickr.com/$server/${id}_${secret}_z.jpg")
-    }
-    private fun originalUrl(): URL{
-        return URL("https://www.flickr.com/photos/$owner/$id")
     }
 
     private fun buddyIcon(): URL? {

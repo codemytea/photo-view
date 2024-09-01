@@ -1,5 +1,5 @@
 # Brief
-Develop a native mobile app which uses the Flickr API to display a list of photos.
+A native mobile app which uses the Flickr API to display a list of photos.
 The look and feel of the app is up to you, but it should adhere to normal expectations for a user of that platform. 
 The app should display a list of photos, along with the poster's userid and user icon. 
 The app should display alongside the photo a list of any tags associated with the photo. 

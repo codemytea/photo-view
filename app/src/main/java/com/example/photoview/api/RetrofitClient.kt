@@ -45,7 +45,7 @@ object RetrofitClient {
             .build()
     }
 
-    //todo di?
+
     val flickrApi by lazy {
         retrofit.create<FlickrAPI>()
     }

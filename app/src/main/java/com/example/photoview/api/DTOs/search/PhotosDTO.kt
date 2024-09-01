@@ -1,6 +1,5 @@
-package com.example.photoview.api.DTOs
+package com.example.photoview.api.DTOs.search
 
-import com.fasterxml.jackson.annotation.JsonAlias
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 
 @JsonIgnoreProperties(ignoreUnknown = true)
