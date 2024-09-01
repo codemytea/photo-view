@@ -63,7 +63,7 @@ fun PhotoSearchView(
                         expanded = false
                         viewModel.onSearch(it, "", errorDialog::genericError)
                     },
-                    expanded = expanded, //todo expanded????
+                    expanded = expanded,
                     onExpandedChange = { expanded = it },
                     placeholder = { Text("Search") },
                     leadingIcon = {

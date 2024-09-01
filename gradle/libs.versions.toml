@@ -11,7 +11,6 @@ composeBom = "2024.08.00"
 uiTextGoogleFonts = "1.6.8"
 navigationCommonKtx = "2.7.7"
 navigationCompose = "2.8.0-rc01"
-kotlinStdlib = "2.0.20"
 kotlinxCoroutinesCore = "1.8.0"
 kotlinxDateTime = "0.6.0"
 kotlinxSerialisationJson = "1.7.1"
@@ -42,10 +41,10 @@ androidx-ui-text-google-fonts = { group = "androidx.compose.ui", name = "ui-text
 androidx-navigation-common-ktx = { group = "androidx.navigation", name = "navigation-common-ktx", version.ref = "navigationCommonKtx" }
 androidx-paging = {group = "androidx.paging", name = "paging-compose", version.ref = "androidxPaging"}
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
-kotlin-stdlib = {group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlinStdlib"}
+kotlin-stdlib = {group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlin"}
 kotlinx-coroutines-core = {group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "kotlinxCoroutinesCore"}
 kotlinx-datetime = {group = "org.jetbrains.kotlinx", name = "kotlinx-datetime", version.ref = "kotlinxDateTime"}
-kotlin-serialization = {group = "org.jetbrains.kotlin", name = "kotlin-serialization", version.ref = "kotlinStdlib"}
+kotlin-serialization = {group = "org.jetbrains.kotlin", name = "kotlin-serialization", version.ref = "kotlin"}
 kotlinx-serialization-json = {group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinxSerialisationJson"}
 retrofit = {group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit"}
 retrofit-json = {group = "com.squareup.retrofit2", name = "converter-jackson", version.ref = "retrofit"}
@@ -60,5 +59,7 @@ android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 jetbrains-compose = { id = "org.jetbrains.compose", version.ref = "composePlugin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+jetbrains-serialisation = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin"}
+
 
 
