@@ -33,11 +33,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
     buildFeatures {
         compose = true
@@ -48,6 +48,24 @@ android {
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
+    }
+
+    packaging {
+        resources {
+            excludes.addAll(
+                listOf(
+                    "META-INF/LICENSE.txt",
+                    "META-INF/LICENSE",
+                    "META-INF/NOTICE",
+                    "META-INF/LICENSE.md",
+                    "META-INF/LICENSE-notice.md",
+                    "META-INF/versions/9/OSGI-INF/MANIFEST.MF",
+                ),
+            )
+        }
+        jniLibs {
+            useLegacyPackaging = true
         }
     }
 }
@@ -76,7 +94,9 @@ dependencies {
     implementation(libs.androidx.paging.runtime.ktx)
     implementation(libs.androidx.recyclerview)
     testImplementation(libs.junit)
+    testImplementation(libs.mockk.unit)
     androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.mockk.instrumented)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)

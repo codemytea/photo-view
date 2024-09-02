@@ -16,14 +16,17 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
+/**
+ * ViewModel backing the Paged Image View Screens
+ * */
 class PagingViewModel : ViewModel() {
 
-    fun getSearchResults(
+    private fun getSearchResults(
         text: String, searchType: SearchType?, onError: (Throwable) -> Unit
     ): Flow<PagingData<PhotoDTO>> =
         Pager(
             PagingConfig(
-                pageSize = FlickrAPI.pageSize,
+                pageSize = FlickrAPI.PAGE_SIZE,
                 prefetchDistance = 100,
                 enablePlaceholders = false
             )

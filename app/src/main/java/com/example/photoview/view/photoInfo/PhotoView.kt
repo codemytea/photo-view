@@ -29,23 +29,31 @@ import com.example.photoview.view.BaseScreen
 import com.example.photoview.view.common.LoadingView
 import kotlinx.coroutines.launch
 
+/**
+ * View for displaying more information about a specific photo.
+ *
+ * @param onHome Function to navigate back to the PhotoSearchView page.
+ * @param photo The [PhotoDTO] of the photo clicked.
+ * */
 @Composable
 fun PhotoView(
     onHome: () -> Unit,
     photo: PhotoDTO?
 ) {
+
+    //Additional information about the photo
     var photoInfo by remember {
         mutableStateOf<PhotoInfoDTO?>(null)
     }
 
     val scope = rememberCoroutineScope()
 
-
     BaseScreen(
         isOnHomePage = false,
         onHome = onHome
     ) { loading, setLoading ->
 
+        //Get additional information about the photo
         LaunchedEffect(true) {
             setLoading(true)
             if (photo?.id != null) {
@@ -60,14 +68,13 @@ fun PhotoView(
             LoadingView()
         }
 
-
+        //Display additional detail about the photo, as well as the photo itself.
         Column(
             modifier = Modifier
                 .weight(1f)
                 .verticalScroll(rememberScrollState())
                 .padding(16.dp)
         ) {
-
             if (photoInfo != null) {
                 Text(
                     photoInfo!!.photo?.title?._content ?: "",
@@ -81,14 +88,13 @@ fun PhotoView(
             photo?.getThumbnail()?.imageBitmap()?.let {
                 Image(
                     it,
-                    null,
+                    "Flickr Image",
                     Modifier
                         .fillMaxWidth()
                         .clip(shape = RoundedCornerShape(4)),
                     contentScale = ContentScale.FillWidth
                 )
             }
-
 
             if (photoInfo != null) {
                 photoInfo!!.photo?.views?.let {
@@ -97,7 +103,6 @@ fun PhotoView(
                 photoInfo!!.photo?.dateuploaded?.let {
                     Text("Date Uploaded: " + it.toStringDate())
                 }
-
             }
         }
     }

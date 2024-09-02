@@ -1,5 +1,7 @@
 A native mobile app which uses the Flickr API to display a list of photos.
 
+Mention collapsable user otherwise can't see photos bc long description warning
+
 
 The app should be able to search for Photos by tag or lists of tags, and provide whether a photo
 should contain all or some tags

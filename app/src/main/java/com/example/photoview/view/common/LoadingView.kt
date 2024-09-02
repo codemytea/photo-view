@@ -9,6 +9,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 
+/**
+ * Base Loading View shared between classes.
+ * */
 @Composable
 fun LoadingView() {
     Box(

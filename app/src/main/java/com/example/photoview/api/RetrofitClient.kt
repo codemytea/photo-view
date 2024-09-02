@@ -9,6 +9,9 @@ import retrofit2.Retrofit
 import retrofit2.converter.jackson.JacksonConverterFactory
 import retrofit2.create
 
+/**
+ * Helper Object to construct RetrofitAPI interfaces
+ * */
 object RetrofitClient {
 
     private val okhttp by lazy {
@@ -24,6 +27,7 @@ object RetrofitClient {
                 val newBody = response.body()?.let {
                     ResponseBody.create(
                         it.contentType(),
+                        //remove non-json prefix and suffix from response
                         it.string().removePrefix("jsonFlickrApi(").removeSuffix(")")
                     )
                 }

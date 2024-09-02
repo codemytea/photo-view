@@ -22,6 +22,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
+/**
+ * A generic base screen that all main views use.
+ *
+ * @param isOnHomePage Whether the user is currently on the home page. Allows for highlighting of the home icon appropriately.
+ * @param onHome Function to be executed when NavigationBarIcon is clicked.
+ * @param contents Contents to draw inside the screen.
+ * */
 @Composable
 fun BaseScreen(
     isOnHomePage: Boolean = true,

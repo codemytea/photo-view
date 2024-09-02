@@ -240,26 +240,30 @@ private val highContrastDarkColorScheme = darkColorScheme(
     surfaceContainerHighest = surfaceContainerHighestDarkHighContrast,
 )
 
+/**
+ * The main app theme.
+ * */
 @Composable
 fun PhotoViewTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    dynamicColor: Boolean = true,
+    //dynamicColor: Boolean = true,
     content: @Composable() () -> Unit
 ) {
     val colorScheme = when {
-//        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-//            val context = LocalContext.current
-//            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
-//        }
+        //Dynamic theming has been commented out to showcase custom theme, but may can added back
+        //in to match Android guidelines on providing a seamless user experience.
+
+        //dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
+            //val context = LocalContext.current
+            //if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
+        //}
 
         darkTheme -> darkScheme
         else -> lightScheme
     }
 
     MaterialTheme(
-        colorScheme = colorScheme,
-        typography = AppTypography,
-        content = content
+        colorScheme = colorScheme, typography = AppTypography, content = content
     )
 }
 

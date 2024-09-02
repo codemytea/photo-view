@@ -22,6 +22,10 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.photoview.api.DTOs.search.PhotoDTO
 import com.example.photoview.view.common.LoadingView
 
+/**
+ * Allows for photos to be displayed based on the paged response from the FlickrPagingSource/FlickrAPI
+ * This ensures photos can be loaded dynamically with minimal loading time, improving UX.
+ * */
 @Composable
 fun ColumnScope.PagingPhotoView(
     setLoading: (Boolean) -> Unit,
@@ -43,7 +47,9 @@ fun ColumnScope.PagingPhotoView(
             state = listState,
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
+
             setLoading(photos.loadState.refresh == LoadState.Loading)
+
             if (photos.itemCount != 0) {
                 items(photos.itemCount) { index ->
                     val photo = photos[index]
@@ -57,11 +63,12 @@ fun ColumnScope.PagingPhotoView(
                     }
                 }
             } else {
-                item {
-                    Text(text = "Sorry, no photos found. Please try again with a different search query.")
+                if (!loading) {
+                    item {
+                        Text(text = "Sorry, no photos found. Please try again with a different search query.")
+                    }
                 }
             }
-
 
             if (photos.loadState.append == LoadState.Loading) {
                 item {

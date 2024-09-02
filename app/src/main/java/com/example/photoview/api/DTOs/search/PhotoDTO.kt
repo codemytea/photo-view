@@ -5,6 +5,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.net.URL
 
+/**
+ * @see <a href="https://www.flickr.com/services/api/flickr.photos.search.html">flickr.photos.search</a>
+ * */
 @JsonIgnoreProperties(ignoreUnknown = true)
 class PhotoDTO(
     var id: Long = 0,
@@ -29,12 +32,22 @@ class PhotoDTO(
     private var thumbnailBytes: ByteArray? = null
     private var buddyIconBytes: ByteArray? = null
 
+    /**
+     * Prefetches image bytes ready for display in UI
+     * */
     suspend fun prefetchImageBytes() = withContext(Dispatchers.IO) {
         thumbnailBytes = thumbnailUrl().readBytes()
         buddyIconBytes = buddyIcon()?.readBytes()
     }
 
+    /**
+     * @return Thumbnail of image as ByteArray?
+     * */
     fun getThumbnail(): ByteArray? = thumbnailBytes
+
+    /**
+     * @return Buddy Icon of user as ByteArray?
+     * */
     fun getBuddyIcon(): ByteArray? = buddyIconBytes
 
     private fun thumbnailUrl(): URL {

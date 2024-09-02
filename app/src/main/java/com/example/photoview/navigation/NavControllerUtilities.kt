@@ -3,7 +3,6 @@ package com.example.photoview.navigation
 
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination.Companion.hasRoute
-import androidx.navigation.toRoute
 import com.example.photoview.navigation.routes.Page
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -32,20 +31,3 @@ fun NavController.safeNavigate(page: @Serializable Page) =
             navigate(page)
         }
     }.let { }
-
-fun Map<String, String>.toLoggerString(): String {
-    val outArray = mutableListOf<String>()
-    for ((key, value) in this) {
-        outArray.add("$key='$value'")
-    }
-    return outArray.joinToString("&")
-}
-
-inline fun <reified T : Page> NavController.getBackStackEntryOrNull(): T? {
-    return try {
-        getBackStackEntry<T>().toRoute<T>()
-    } catch (e: IllegalArgumentException) {
-        null
-    }
-}
-

@@ -5,9 +5,12 @@ import java.time.LocalDateTime
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 
-fun String.toStringDate(): String {
+/**
+ * Convert [Long] to a formatted [String] date.
+ * */
+fun Long.toStringDate(): String {
     return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-        LocalDateTime.ofEpochSecond(this.toLong(), 0, ZoneOffset.UTC).format(
+        LocalDateTime.ofEpochSecond(this, 0, ZoneOffset.UTC).format(
             DateTimeFormatter.ofPattern("dd/MM/yyyy")
         )
     } else {

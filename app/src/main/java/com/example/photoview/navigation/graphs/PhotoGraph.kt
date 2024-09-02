@@ -14,9 +14,13 @@ import com.example.photoview.view.photoInfo.PhotoView
 import com.example.photoview.view.search.PhotoSearchView
 import com.example.photoview.view.userInfo.UserView
 
+/**
+ * Navigation Graph of App.
+ * */
 @Composable
 fun PhotoViewGraph() {
     val navController = rememberNavController()
+
     var photo by remember {
         mutableStateOf<PhotoDTO?>(null)
     }

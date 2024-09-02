@@ -12,8 +12,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
-
-
+/**
+ * Allows for easy showing of dialogs.
+ * */
 class Dialog(
     private val stringError: (DialogParams) -> Unit,
 ) {
@@ -29,9 +30,8 @@ class Dialog(
         val message: String,
         val buttonParams: ButtonParams
     )
-    
-    
-    fun show(
+
+    private fun show(
         title: String,
         message: String,
         buttons: ButtonParams = ButtonParams(),
@@ -48,6 +48,9 @@ class Dialog(
     }
 }
 
+/**
+ * Provides a dialog object for the composable to use.
+ * */
 @Composable
 fun rememberDialog(): Dialog {
 

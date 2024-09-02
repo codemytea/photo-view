@@ -25,6 +25,14 @@ import androidx.compose.ui.unit.sp
 import com.example.photoview.api.DTOs.search.PhotoDTO
 import com.example.photoview.utils.imageBitmap
 
+/**
+ * Displays the base photo item card with associated user info.
+ *
+ * @param photo The [PhotoDTO] of the photo to display
+ * @param onClick Function to execute if photo is clicked
+ * @param onUser Function to execute if user is selected.
+ * @param loading
+ * */
 @Composable
 fun PhotoItem(
     photo: PhotoDTO,
@@ -37,9 +45,10 @@ fun PhotoItem(
             colors = CardDefaults.cardColors(
                 containerColor = MaterialTheme.colorScheme.primaryContainer,
                 contentColor = MaterialTheme.colorScheme.onPrimaryContainer
-            )
+            ),
         ) {
 
+            //Display the image
             Image(
                 it,
                 "Flickr Image",
@@ -51,7 +60,7 @@ fun PhotoItem(
                 contentScale = ContentScale.FillWidth
             )
 
-
+            //Display user information associated with the image
             Row(
                 Modifier
                     .fillMaxWidth()
@@ -71,11 +80,11 @@ fun PhotoItem(
                             Modifier.clip(shape = RoundedCornerShape(50))
                         )
                     }
-
                     Text(text = " " + photo.owner, textAlign = TextAlign.Left)
                 }
             }
 
+            //Display tags associated with the image
             if (photo.tags.isNotEmpty()) {
                 Text(
                     text = "Tags: " + photo.tags.trim().replace(" ", ", ").lowercase(),
@@ -83,8 +92,6 @@ fun PhotoItem(
                     modifier = Modifier.padding(8.dp)
                 )
             }
-
-
         }
     }
 }
