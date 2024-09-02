@@ -74,7 +74,7 @@ fun PhotoSearchView(
     ) { loading, setLoading ->
 
         DockedSearchBar(
-            modifier = Modifier.wrapContentHeight(),
+            modifier = Modifier.wrapContentHeight().padding(top = 16.dp),
             inputField = {
                 SearchBarDefaults.InputField(
                     enabled = !loading,

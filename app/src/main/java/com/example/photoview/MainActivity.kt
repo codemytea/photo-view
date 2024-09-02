@@ -17,8 +17,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             PhotoViewTheme {
                 //Wrap in surface so dark mode works
-                //safeDrawingPadding() to ensure safe areas are protected in edgeToEdge mode (SDK >= 35)
-                Surface(Modifier.safeDrawingPadding()) {
+                Surface {
                     PhotoViewGraph()
                 }
             }

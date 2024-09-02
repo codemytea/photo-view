@@ -7,5 +7,5 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties
  * */
 @JsonIgnoreProperties(ignoreUnknown = true)
 class PhotosDTO(
-    var photos : SearchDTO = SearchDTO()
+    var photos: SearchDTO = SearchDTO()
 )

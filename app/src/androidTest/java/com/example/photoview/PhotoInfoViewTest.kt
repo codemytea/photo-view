@@ -11,8 +11,6 @@ import com.example.photoview.api.DTOs.photoInfo.DescriptionDTO
 import com.example.photoview.api.DTOs.photoInfo.PhotoInfoDTO
 import com.example.photoview.api.DTOs.photoInfo.TitleDTO
 import com.example.photoview.api.DTOs.search.PhotoDTO
-import com.example.photoview.api.DTOs.search.PhotosDTO
-import com.example.photoview.api.DTOs.search.SearchDTO
 import com.example.photoview.utils.imageBitmap
 import com.example.photoview.view.photoInfo.PhotoView
 import io.mockk.coVerify

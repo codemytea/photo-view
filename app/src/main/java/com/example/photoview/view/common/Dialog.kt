@@ -42,9 +42,9 @@ class Dialog(
     fun genericError(err: Throwable) {
         err.printStackTrace()
         return err.message?.let {
-                show(title = "Error", message = it)
-            } ?: show(title = "Error", message = "An unexpected error occurred.")
-        
+            show(title = "Error", message = it)
+        } ?: show(title = "Error", message = "An unexpected error occurred.")
+
     }
 }
 

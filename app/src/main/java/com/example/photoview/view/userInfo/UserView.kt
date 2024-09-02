@@ -9,7 +9,6 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
-import androidx.compose.material.icons.outlined.KeyboardArrowUp
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
@@ -75,7 +74,7 @@ fun UserView(
                 Card(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(bottom = 16.dp)
+                        .padding(bottom = 16.dp, top = 16.dp)
                 ) {
                     Column(
                         Modifier.padding(16.dp)
@@ -101,11 +100,11 @@ fun UserView(
                             }
                         }
 
-                        if (expanded){
+                        if (expanded) {
                             Text(text = userInfo!!.profile.profile_description)
                             Text(text = "Joined on " + userInfo!!.profile.join_date.toStringDate())
                         }
-                        
+
                     }
                 }
             } else {

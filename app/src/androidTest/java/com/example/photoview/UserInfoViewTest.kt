@@ -5,6 +5,7 @@ import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.hasContentDescription
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
+import androidx.compose.ui.test.performClick
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.photoview.api.DTOs.search.PhotosDTO
 import com.example.photoview.api.DTOs.search.SearchDTO
@@ -83,6 +84,7 @@ class UserInfoViewTest {
             UserView({}, {}, "user_id")
         }
 
+        composeTestRule.onNode(hasContentDescription("Expand")).performClick()
         composeTestRule.onNodeWithText("test description").assertIsDisplayed()
 
         coVerify {
@@ -106,6 +108,7 @@ class UserInfoViewTest {
             UserView({}, {}, "user_id")
         }
 
+        composeTestRule.onNode(hasContentDescription("Expand")).performClick()
         composeTestRule.onNodeWithText("Joined on 31/08/2024").assertIsDisplayed()
 
         coVerify {

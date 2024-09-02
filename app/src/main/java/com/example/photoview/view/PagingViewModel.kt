@@ -37,7 +37,7 @@ class PagingViewModel : ViewModel() {
     private val _uiState = MutableStateFlow<PagingData<PhotoDTO>>(PagingData.empty())
     val uiState: StateFlow<PagingData<PhotoDTO>> = _uiState.asStateFlow()
 
-    fun onSearch(text: String, searchType : SearchType?, onError: (Throwable) -> Unit) {
+    fun onSearch(text: String, searchType: SearchType?, onError: (Throwable) -> Unit) {
         viewModelScope.launch {
             try {
                 getSearchResults(text, searchType, onError).collectLatest { pagingData ->
