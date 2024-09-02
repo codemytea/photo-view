@@ -14,6 +14,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -42,12 +43,12 @@ fun BaseScreen(
 
         contents(loading, setLoading)
 
-
         //Ensure safe areas are protected in edgeToEdge mode (SDK >= 35)
         NavigationBar(
         ) {
             NavigationBarItem(
                 icon = { Icon(Icons.Filled.Home, contentDescription = "Home") },
+                label = { Text("Home") },
                 selected = isOnHomePage,
                 onClick = { onHome() },
                 modifier = Modifier.wrapContentHeight()

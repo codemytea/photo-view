@@ -23,7 +23,7 @@ import com.example.photoview.api.DTOs.search.PhotoDTO
 import com.example.photoview.view.BaseScreen
 import com.example.photoview.view.PagingPhotoView
 import com.example.photoview.view.PagingViewModel
-import com.example.photoview.view.rememberDialog
+import com.example.photoview.view.common.rememberDialog
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)

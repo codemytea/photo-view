@@ -1,4 +1,4 @@
-package com.example.photoview.view
+package com.example.photoview.view.common
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.AlertDialog

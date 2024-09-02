@@ -43,7 +43,6 @@ class PhotoDTO(
 
     private fun buddyIcon(): URL? {
         if (iconfarm == "0" || iconserver == "0") return null
-        println("http://farm$iconfarm.staticflickr.com/$iconserver/buddyicons/$owner.jpg")
-        return URL("http://farm$iconfarm.staticflickr.com/$iconserver/buddyicons/$owner.jpg")
+        return URL("https://farm${iconfarm}.staticflickr.com/${iconserver}/buddyicons/${owner}.jpg")
     }
 }

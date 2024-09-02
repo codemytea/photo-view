@@ -19,6 +19,7 @@ import androidx.compose.ui.unit.dp
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.photoview.api.DTOs.search.PhotoDTO
+import com.example.photoview.view.common.LoadingView
 
 @Composable
 fun ColumnScope.PagingPhotoView(

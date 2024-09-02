@@ -42,7 +42,7 @@ fun PhotoItem(
 
             Image(
                 it,
-                null,
+                "Flickr Image",
                 Modifier
                     .fillMaxWidth()
                     .clickable(enabled = !loading, onClick = onClick)
@@ -60,9 +60,16 @@ fun PhotoItem(
             ) {
                 Button(onClick = { onUser() }, Modifier.fillMaxWidth()) {
                     if (photo.getBuddyIcon()?.imageBitmap() == null) {
-                        Icon(Icons.Filled.AccountCircle, contentDescription = null)
+                        Icon(
+                            Icons.Filled.AccountCircle,
+                            contentDescription = "Buddy Icon Placeholder"
+                        )
                     } else {
-                        Image(photo.getBuddyIcon()!!.imageBitmap()!!, null)
+                        Image(
+                            photo.getBuddyIcon()!!.imageBitmap()!!,
+                            "Buddy Icon",
+                            Modifier.clip(shape = RoundedCornerShape(50))
+                        )
                     }
 
                     Text(text = " " + photo.owner, textAlign = TextAlign.Left)

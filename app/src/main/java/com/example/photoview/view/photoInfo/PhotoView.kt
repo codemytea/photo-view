@@ -26,7 +26,7 @@ import com.example.photoview.api.RetrofitClient
 import com.example.photoview.utils.imageBitmap
 import com.example.photoview.utils.toStringDate
 import com.example.photoview.view.BaseScreen
-import com.example.photoview.view.LoadingView
+import com.example.photoview.view.common.LoadingView
 import kotlinx.coroutines.launch
 
 @Composable

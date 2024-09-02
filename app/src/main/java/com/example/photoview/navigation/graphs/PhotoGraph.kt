@@ -21,7 +21,7 @@ fun PhotoViewGraph() {
         mutableStateOf<PhotoDTO?>(null)
     }
 
-    val onHome: () -> Unit = { navController.safeNavigate(PhotoRoute.Search) }
+    val onHome: () -> Unit = { navController.popBackStack(PhotoRoute.Search, false) }
     val onUser: (PhotoDTO) -> Unit = { navController.safeNavigate(PhotoRoute.ViewUser(it.owner)) }
     val onPhoto: (PhotoDTO) -> Unit = {
         photo = it
