@@ -8,6 +8,7 @@ import androidx.paging.PagingData
 import com.example.photoview.api.DTOs.search.PhotoDTO
 import com.example.photoview.api.FlickrAPI
 import com.example.photoview.api.FlickrPagingSource
+import com.example.photoview.view.search.SearchType
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -18,7 +19,7 @@ import kotlinx.coroutines.launch
 class PagingViewModel : ViewModel() {
 
     fun getSearchResults(
-        text: String, userId: String, onError: (Throwable) -> Unit
+        text: String, searchType: SearchType?, onError: (Throwable) -> Unit
     ): Flow<PagingData<PhotoDTO>> =
         Pager(
             PagingConfig(
@@ -27,16 +28,16 @@ class PagingViewModel : ViewModel() {
                 enablePlaceholders = false
             )
         ) {
-            FlickrPagingSource(text, userId, onError)
+            FlickrPagingSource(text, searchType, onError)
         }.flow
 
     private val _uiState = MutableStateFlow<PagingData<PhotoDTO>>(PagingData.empty())
     val uiState: StateFlow<PagingData<PhotoDTO>> = _uiState.asStateFlow()
 
-    fun onSearch(text: String, userId: String, onError: (Throwable) -> Unit) {
+    fun onSearch(text: String, searchType : SearchType?, onError: (Throwable) -> Unit) {
         viewModelScope.launch {
             try {
-                getSearchResults(text, userId, onError).collectLatest { pagingData ->
+                getSearchResults(text, searchType, onError).collectLatest { pagingData ->
                     _uiState.value = pagingData
                 }
             } catch (e: Throwable) {

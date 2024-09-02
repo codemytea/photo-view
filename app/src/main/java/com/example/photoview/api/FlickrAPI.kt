@@ -16,6 +16,7 @@ interface FlickrAPI {
     suspend fun search(
         @Query("text") text: String,
         @Query("user_id") userId: String,
+        @Query("tags") tags: String,
         @Query("page") page: Int,
         @Query("method") method: String = "flickr.photos.search",
         @Query("safe_search") safeSearch: Int = 1,

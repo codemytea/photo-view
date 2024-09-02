@@ -42,7 +42,7 @@ fun UserView(
         scope.launch {
             userInfo = RetrofitClient.flickrApi.userInfo(ownerId)
         }
-        viewModel.onSearch("", ownerId, errorDialog::genericError)
+        viewModel.onSearch("", null, errorDialog::genericError)
     }
 
 

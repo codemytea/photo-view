@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberUpdatedState
@@ -43,18 +44,25 @@ fun ColumnScope.PagingPhotoView(
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             setLoading(photos.loadState.refresh == LoadState.Loading)
-
-            items(photos.itemCount) { index ->
-                val photo = photos[index]
-                if (photo != null) {
-                    PhotoItem(
-                        photo = photo,
-                        onClick = { onPhoto(photo) },
-                        onUser = { onUser(photo) },
-                        loading
-                    )
+            if (photos.itemCount != 0) {
+                items(photos.itemCount) { index ->
+                    val photo = photos[index]
+                    if (photo != null) {
+                        PhotoItem(
+                            photo = photo,
+                            onClick = { onPhoto(photo) },
+                            onUser = { onUser(photo) },
+                            loading
+                        )
+                    }
+                }
+            } else {
+                item {
+                    Text(text = "Sorry, no photos found. Please try again with a different search query.")
                 }
             }
+
+
             if (photos.loadState.append == LoadState.Loading) {
                 item {
                     CircularProgressIndicator(

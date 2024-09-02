@@ -3,6 +3,8 @@ package com.example.photoview.api
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.photoview.api.DTOs.search.PhotoDTO
+import com.example.photoview.api.DTOs.search.PhotosDTO
+import com.example.photoview.view.search.SearchType
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -12,7 +14,7 @@ import kotlinx.coroutines.withContext
 
 class FlickrPagingSource(
     val text: String,
-    val userId: String = "",
+    val searchType: SearchType? = null,
     val onError: (Throwable) -> Unit
 ) : PagingSource<Int, PhotoDTO>() {
 
@@ -24,7 +26,14 @@ class FlickrPagingSource(
         withContext(Dispatchers.IO) {
             try {
                 val currentPage = params.key ?: 1
-                val response = RetrofitClient.flickrApi.search(text, userId, currentPage)
+
+                val response = when (searchType) {
+                    SearchType.TEXT -> RetrofitClient.flickrApi.search(text, "", "", currentPage)
+                    SearchType.USER -> RetrofitClient.flickrApi.search("", text, "", currentPage)
+                    SearchType.TAG -> RetrofitClient.flickrApi.search("", "", text, currentPage)
+                    null -> RetrofitClient.flickrApi.search(text, "", "", currentPage)
+                }
+
                 LoadResult.Page(
                     data = response.photos.photo.also {
                         supervisorScope {
@@ -45,7 +54,5 @@ class FlickrPagingSource(
                 // IOException for network failures.
                 LoadResult.Error(e)
             }
-
-
         }
 }
