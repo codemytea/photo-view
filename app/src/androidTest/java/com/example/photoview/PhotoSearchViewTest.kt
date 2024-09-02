@@ -34,7 +34,7 @@ class PhotoSearchViewTest {
 
         composeTestRule.onNodeWithText("Yorkshire").assertIsDisplayed()
         coVerify {
-            flickrAPI.search("Yorkshire", "", "", 1)
+            flickrAPI.search("Yorkshire", any(), any(), 1)
         }
     }
 

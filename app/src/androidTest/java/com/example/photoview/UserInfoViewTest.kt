@@ -57,7 +57,7 @@ class UserInfoViewTest {
         coVerify {
             photoDTO.getThumbnail()
             flickrAPI.userInfo("user_id")
-            flickrAPI.search("", "user_id", "", any())
+            flickrAPI.search(any(), "user_id", any(), any())
         }
     }
 
