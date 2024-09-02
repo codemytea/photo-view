@@ -41,10 +41,10 @@ class FlickrPagingSource(
                 val currentPage = params.key ?: 1
 
                 val response = when (searchType) {
-                    SearchType.TEXT -> RetrofitClient.flickrApi.search(text, "", "", currentPage)
-                    SearchType.USER -> RetrofitClient.flickrApi.search("", text, "", currentPage)
-                    SearchType.TAG -> RetrofitClient.flickrApi.search("", "", text, currentPage)
-                    null -> RetrofitClient.flickrApi.search(text, "", "", currentPage)
+                    SearchType.TEXT -> RetrofitClient.flickrApi.search(text, null, null, currentPage)
+                    SearchType.USER -> RetrofitClient.flickrApi.search(null, text, null, currentPage)
+                    SearchType.TAG -> RetrofitClient.flickrApi.search(null, null, text, currentPage)
+                    null -> RetrofitClient.flickrApi.search(text, null, null, currentPage)
                 }
 
                 LoadResult.Page(
