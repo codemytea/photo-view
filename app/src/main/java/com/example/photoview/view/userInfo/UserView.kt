@@ -53,7 +53,7 @@ fun UserView(
     var userInfo by remember { mutableStateOf<UserInfoDTO?>(null) }
     val scope = rememberCoroutineScope()
     val errorDialog = rememberDialog()
-    var expanded by remember { mutableStateOf(true) }
+    var expanded by remember { mutableStateOf(false) }
 
     //Load more info about the user from the FlickrAPI
     LaunchedEffect(true) {
@@ -89,7 +89,7 @@ fun UserView(
 
                             //User Information can take up a lot of space, which will cover the photos
                             //as this part of the screen is static and doesn't scroll.
-                            //As such, allow user to collapse information to view images below
+                            //As such, start the information collapsed and allow user to expand information
                             Button(onClick = { expanded = !expanded }) {
                                 if (expanded) Icon(
                                     Icons.Filled.KeyboardArrowUp,
